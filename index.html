@@ -200,6 +200,25 @@ section{padding:clamp(4rem,9vw,7.5rem) 0;border-top:1px solid var(--cream-faint)
 .social small{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--cream-dim);overflow-wrap:anywhere}
 .social i{margin-left:auto;font-style:normal;color:var(--cream-dim)}
 
+/* brands: sponsor / feature inquiries */
+.brands{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(2rem,6vw,5rem);align-items:center}
+.brands>*{min-width:0}
+.brand-shot{position:relative;margin:0;border-radius:24px;overflow:hidden;background:var(--bg-2);
+  box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px var(--cream-faint);max-width:420px;width:100%;justify-self:center}
+.brand-shot img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 62%}
+.brand-shot figcaption{position:absolute;left:14px;bottom:14px;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;
+  text-transform:uppercase;background:rgba(24,21,19,.7);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  padding:.35rem .7rem;border-radius:99px;color:var(--cream)}
+.brand-copy .eyebrow{display:block;margin-bottom:.9rem}
+.brand-lede{color:var(--cream-dim);max-width:46ch;margin:1.1rem 0 0}
+.offers{list-style:none;margin:1.8rem 0 0;padding:0;border-top:1px solid var(--cream-faint)}
+.offers li{display:grid;grid-template-columns:3rem 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--cream-faint)}
+.offers li>span{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--tan);padding-top:.45rem}
+.offers b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(1.3rem,2.4vw,1.6rem);line-height:1.1}
+.offers small{display:block;margin-top:.25rem;font-size:.92rem;color:var(--cream-dim);line-height:1.45}
+.brand-mail{margin:.9rem 0 0;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--cream-dim);user-select:all}
+@media(max-width:860px){.brands{grid-template-columns:1fr}.brand-shot{max-width:340px}}
+
 /* stay close: newsletter + support placeholders */
 .stay{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(.75rem,2vw,1.2rem)}
 @media(max-width:860px){.stay{grid-template-columns:1fr}}
@@ -411,6 +430,7 @@ footer{border-top:1px solid var(--cream-faint);padding:2.4rem 0 3rem}
     <a class="link" href="#episodes">Episodes</a>
     <a class="link" href="#meet">Meet Frady</a>
     <a class="link" href="#shop">Shop</a>
+    <a class="link" href="#brands">Brands</a>
     <a class="pill" href="#follow">Follow</a>
   </div>
 </nav>
@@ -611,6 +631,30 @@ footer{border-top:1px solid var(--cream-faint);padding:2.4rem 0 3rem}
   </div>
 </section>
 
+<section id="brands">
+  <div class="wrap brands">
+    <figure class="brand-shot rise">
+      <img src="assets/img/frady/frady-steak-and-eggs.jpg" alt="Frady at the bodega counter, holding a tote bag with a steak inside" width="720" height="1280" loading="lazy">
+      <figcaption>Your product, in Frady's paws</figcaption>
+    </figure>
+    <div class="brand-copy rise">
+      <span class="eyebrow">For brands</span>
+      <h2>Cook with <em>Frady.</em></h2>
+      <p class="brand-lede">Frady shops at the bodega, then cooks in his Brooklyn apartment. Your product can be part of the story.</p>
+      <ol class="offers">
+        <li><span>01</span><div><b>Sponsored episode</b><small>A full Frady episode built around your product.</small></div></li>
+        <li><span>02</span><div><b>Product feature</b><small>Your tool, ingredient or snack shows up in Frady's kitchen.</small></div></li>
+        <li><span>03</span><div><b>Animated ad spots</b><small>Custom short spots for your channels and paid ads.</small></div></li>
+      </ol>
+      <div class="btns">
+        <a class="pill" href="mailto:fradythecat@gmail.com?subject=Brand%20partnership%20with%20Frady%20The%20Cat">Work with Frady ↗</a>
+        <a class="pill ghost" data-social="instagram" href="#" target="_blank" rel="noopener">DM on Instagram</a>
+      </div>
+      <p class="brand-mail">fradythecat@gmail.com</p>
+    </div>
+  </div>
+</section>
+
 <section id="stay">
   <div class="wrap stay">
     <div class="card rise">
@@ -643,6 +687,8 @@ footer{border-top:1px solid var(--cream-faint);padding:2.4rem 0 3rem}
       <a data-social="tiktok" href="#" target="_blank" rel="noopener">TikTok</a>
       <a data-social="instagram" href="#" target="_blank" rel="noopener">Instagram</a>
       <a data-social="youtube" href="#" target="_blank" rel="noopener">YouTube</a>
+      <a href="#brands">Brands</a>
+      <a href="mailto:fradythecat@gmail.com">Contact</a>
       <a id="shopLink" href="#" target="_blank" rel="noopener" hidden>Shop</a>
     </nav>
     <small>© <span id="yr"></span> Frady The Cat · A fictional animated character</small>
@@ -685,9 +731,9 @@ const SOCIAL = {
 };
 /* TODO(support): tip / support page URL. Empty = button hidden, "Coming soon" shown. */
 const SUPPORT_URL = '';
-/* TODO(newsletter): form POST endpoint from the newsletter provider Rafael picks.
-   Empty = the form is disabled and says "coming soon". Nothing is sent anywhere. */
-const NEWSLETTER_ENDPOINT = '';
+/* Newsletter signups are emailed to Frady's inbox via FormSubmit (first signup sends a one-time confirm email there). */
+const FRADY_EMAIL = 'fradythecat@gmail.com';
+const NEWSLETTER_ENDPOINT = 'https://formsubmit.co/ajax/' + FRADY_EMAIL;
 /* TODO(shop): merch store URL. Empty = buy buttons say "Coming soon" and the footer Shop link stays hidden. */
 const SHOP_URL = '';
 /* TODO(followers): Frady's real follower count. Every merch card, progress bar and
@@ -741,7 +787,7 @@ document.querySelectorAll('[data-social]').forEach(a=>{
     const email = input.value.trim();
     if(!/^\S+@\S+\.\S+$/.test(email)){ input.focus(); note.textContent = 'That email looks off. Try again?'; return; }
     fetch(NEWSLETTER_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body: JSON.stringify({email})})
+      body: JSON.stringify({email, _subject:'Frady The Cat: new newsletter signup', _template:'table', _captcha:'false'})})
       .then(r=>{ note.textContent = r.ok ? 'You are in. Frady is not impressed, but he noticed.' : 'Something went wrong. Try again later.'; if(r.ok) form.reset(); })
       .catch(()=>{ note.textContent = 'Something went wrong. Try again later.'; });
   });
